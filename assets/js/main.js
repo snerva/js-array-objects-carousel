@@ -4,7 +4,7 @@
 //al click a destra o sinistra l immagine attiva si vede e anche il relativo titolo/testo
 // aggiungere ciclo infinito. 
 
-const images = [
+const sliderImages = [
     {
         image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
@@ -27,4 +27,26 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+
+//ciclo dentro array e seleziono valori da inserire in markup
+
+sliderImages.forEach(thisSlide => {
+    console.log(thisSlide);
+
+    const sliderMarkup= `
+    <div class="slides position-relative">
+         <img class="active" src="./assets/${thisSlide.image}" alt=""> 
+         <div class="slide_caption position-absolute bottom-0 start-50 translate-middle-x">
+             <h3>${thisSlide.title}</h3>
+             <p>${thisSlide.text}</p>
+        </div>
+    </div>
+    `
+   console.log(sliderMarkup);
+
+})
+
+
+
 
