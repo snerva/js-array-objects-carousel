@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: lightgray;
+}
+.container_slider{
+    width: 700px;
+    margin: 10rem auto;
+}
+.slides img{
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    object-fit: cover;
+}
+/*
+.slides img:not(img.active){
+    display: none;
+}
+img .active{
+    display: block;
+}
+*/
+
+.slide_caption{
+    margin-bottom: 1rem;
+}
+.next_btn,
+.prev_btn{
+    background-color: #cccccc85;
+    padding: 8px 10px;
+    margin: 1rem;
+    cursor: pointer;
+    color: lightgrey;
+}
