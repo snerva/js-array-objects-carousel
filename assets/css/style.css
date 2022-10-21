@@ -5,7 +5,7 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    color: lightgray;
+    color: white;
 }
 .container_slider{
     width: 700px;
@@ -17,14 +17,14 @@ body{
     height: 400px;
     object-fit: cover;
 }
-/*
+
 .slides img:not(img.active){
     display: none;
 }
 img .active{
     display: block;
 }
-*/
+
 
 .slide_caption{
     margin-bottom: 1rem;

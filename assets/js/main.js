@@ -3,6 +3,12 @@
 //rimuovi contenuto statico e utilizza l array di oggetti  per svilupparlo in modo dinamico 
 //al click a destra o sinistra l immagine attiva si vede e anche il relativo titolo/testo
 // aggiungere ciclo infinito. 
+const sliderDomEl= document.querySelector('.slider');
+
+let activeImg = 0;
+//seleziono bottoni next e prev
+const prevBtn = document.querySelector('.prev_btn');
+const nextBtn = document.querySelector('.next_btn');
 
 const sliderImages = [
     {
@@ -31,22 +37,62 @@ const sliderImages = [
 
 //ciclo dentro array e seleziono valori da inserire in markup
 
-sliderImages.forEach(thisSlide => {
+sliderImages.forEach((thisSlide, i) => {
     console.log(thisSlide);
 
     const sliderMarkup= `
-    <div class="slides position-relative">
-         <img class="active" src="./assets/${thisSlide.image}" alt=""> 
-         <div class="slide_caption position-absolute bottom-0 start-50 translate-middle-x">
-             <h3>${thisSlide.title}</h3>
-             <p>${thisSlide.text}</p>
-        </div>
+    <div class="slides text-center position-relative">
+       <img class="${i === activeImg ? 'active' : ''}" src="./assets/${thisSlide.image}" alt=""> 
+       <div class="slide_caption position-absolute  bottom-0 start-50 translate-middle-x">
+           <h3>${thisSlide.title}</h3>
+           <p>${thisSlide.text}</p>
+       </div>
     </div>
     `
    console.log(sliderMarkup);
+   //creo collegamento con dom e inserisco slides in modo dinamico
+   sliderDomEl.insertAdjacentHTML('beforeend', sliderMarkup);
+
+
 
 })
 
 
-
-
+//ascolto per prev click
+prevBtn.addEventListener('click', function (){
+    //cerco slide attiva
+    const currentSlide = document.querySelector('.slides > img.active');
+    console.log(currentSlide);
+    //tolgo classe e decremento di uno 
+    currentSlide.classList.remove('active');
+    activeImg--
+    if (activeImg < 0){
+        activeImg = sliderImages.length - 1;
+    }
+    //seleziono precedente e applico classe active
+    const allSlides = document.querySelectorAll('.slides > img');
+    console.log(allSlides);
+    const prevSlide = allSlides[activeImg];
+    prevSlide.classList.add('active');
+    
+})
+/*
+//ascolto per next click
+nextBtn.addEventListener('click', function (){
+    //cerco slide attiva
+    const currentSlide = document.querySelector('.slides > img.active');
+    console.log(currentSlide);
+    //tolgo classe e aumenta di uno 
+    currentSlide.classList.remove('active');
+    activeImg++
+    if (activeImg > sliderImages.length){
+        activeImg = 0;
+    }
+    //seleziono successiva e applico classe active
+    const allSlides = document.querySelectorAll('.slides > img');
+    console.log(allSlides);
+    const nextSlide = allSlides[activeImg];
+    nextSlide.classList.add('active');
+    
+})
+*/
