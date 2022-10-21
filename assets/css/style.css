@@ -21,14 +21,21 @@ body{
 .slides img:not(img.active){
     display: none;
 }
-img .active{
-    display: block;
+.slide_caption h3:not(h3.active){
+    display: none;
+}
+.slide_caption p:not(p.active){
+    display: none;
 }
 
+.active{
+    display: block;
+}
 
 .slide_caption{
     margin-bottom: 1rem;
 }
+
 .next_btn,
 .prev_btn{
     background-color: #cccccc85;
