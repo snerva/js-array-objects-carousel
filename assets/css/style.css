@@ -18,17 +18,11 @@ body{
     object-fit: cover;
 }
 
-.slides img:not(img.active){
-    display: none;
-}
-.slide_caption h3:not(h3.active){
-    display: none;
-}
-.slide_caption p:not(p.active){
+.slider .slides:not(.slides.active){
     display: none;
 }
 
-.active{
+.slider .slides.active{
     display: block;
 }
 

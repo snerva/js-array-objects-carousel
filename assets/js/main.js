@@ -41,11 +41,11 @@ sliderImages.forEach((thisSlide, i) => {
     console.log(thisSlide);
 
     const sliderMarkup= `
-    <div class="slides text-center position-relative">
-       <img class="${i === activeSlide ? 'active' : ''}" id="this" src="./assets/${thisSlide.image}" alt=""> 
+    <div class="slides text-center position-relative ${i === activeSlide ? 'active' : ''}">
+       <img src="./assets/${thisSlide.image}" alt=""> 
        <div class="slide_caption position-absolute  bottom-0 start-50 translate-middle-x">
-           <h3 class="${i === activeSlide ? 'active' : ''}" id="this">${thisSlide.title}</h3>
-           <p class="${i === activeSlide ? 'active' : ''}" id="this">${thisSlide.text}</p>
+           <h3>${thisSlide.title}</h3>
+           <p>${thisSlide.text}</p>
        </div>
     </div>
     `
@@ -59,35 +59,34 @@ sliderImages.forEach((thisSlide, i) => {
 //ascolto per prev click
 prevBtn.addEventListener('click', function (){
     //cerco slide attiva
-    const currentSlide = document.querySelector('.slides > img.active');
+    const currentSlide = document.querySelector('.slider > .slides.active');
     console.log(currentSlide);
+    
     //tolgo classe e decremento di uno 
     currentSlide.classList.remove('active');
     activeSlide--
     if (activeSlide < 0){
-        activeSlide = sliderImages.length - 1;
+        activeSlide = sliderImages.length -  1;
     }
     //seleziono precedente e applico classe active
-    const allSlides = document.querySelectorAll('.slides > img');
-    const prevSlide = allSlides[activeSlide];
-    console.log(prevSlide);
-    prevSlide.classList.add('active');
+    const allSlides = document.querySelectorAll('.slider > .slides');
+    allSlides[activeSlide].classList.add('active');
     
 })
 
 //ascolto per next click
 nextBtn.addEventListener('click', function (){
     //cerco slide attiva
-    const currentSlide = document.querySelector('.slides > img.active');
+    const currentSlide = document.querySelector('.slider > .slides.active');
     console.log(currentSlide);
     //tolgo classe e aumenta di uno 
     currentSlide.classList.remove('active');
     activeSlide++
-    if (activeSlide > sliderImages.length ){
-        activeSlide = sliderImages.lenght - 5;
+    if (activeSlide === sliderImages.length){
+        activeSlide = 0;
     }
     //seleziono successiva e applico classe active
-    const allSlides = document.querySelectorAll('.slides > img');
+    const allSlides = document.querySelectorAll('.slider > .slides');
     const nextSlide = allSlides[activeSlide];
     nextSlide.classList.add('active');
     
