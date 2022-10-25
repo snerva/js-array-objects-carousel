@@ -4,7 +4,7 @@
 //al click a destra o sinistra l immagine attiva si vede e anche il relativo titolo/testo
 // aggiungere ciclo infinito. 
 const sliderDomEl= document.querySelector('.slider');
-
+const iconsEl = document.querySelector('.icons');
 let activeSlide = 0;
 //seleziono bottoni next e prev
 const prevBtn = document.querySelector('.prev_btn');
@@ -50,20 +50,33 @@ sliderImages.forEach((thisSlide, i) => {
     </div>
     `
    console.log(sliderMarkup);
+
+   const iconMarkup = `<img class="img-fluid ${i === activeSlide ? 'active' : ''}" src="./assets/${thisSlide.image}" alt="">`
    //creo collegamento con dom e inserisco slides in modo dinamico
    sliderDomEl.insertAdjacentHTML('afterbegin', sliderMarkup);
+
+   
+
+   iconsEl.insertAdjacentHTML('afterbegin', iconMarkup);
     
 })
 
+prevBtn.addEventListener('click', prevImage);
+nextBtn.addEventListener('click', nextImage);
 
-//ascolto per prev click
-prevBtn.addEventListener('click', function (){
+setInterval(() => {
+    nextImage()
+}, 3000);
+
+function prevImage(){
+    //ascolto per prev click
     //cerco slide attiva
     const currentSlide = document.querySelector('.slider > .slides.active');
     console.log(currentSlide);
-    
+    const currentIcon = document.querySelector('.icons > img.active');
     //tolgo classe e decremento di uno 
     currentSlide.classList.remove('active');
+    currentIcon.classList.remove('active');
     activeSlide--
     if (activeSlide < 0){
         activeSlide = sliderImages.length -  1;
@@ -71,16 +84,18 @@ prevBtn.addEventListener('click', function (){
     //seleziono precedente e applico classe active
     const allSlides = document.querySelectorAll('.slider > .slides');
     allSlides[activeSlide].classList.add('active');
-    
-})
+    const allIcons = document.querySelectorAll('.icons > img');
+    allIcons[activeSlide].classList.add('active');  
+}
 
-//ascolto per next click
-nextBtn.addEventListener('click', function (){
+function nextImage(){
     //cerco slide attiva
     const currentSlide = document.querySelector('.slider > .slides.active');
     console.log(currentSlide);
+    const currentIcon = document.querySelector('.icons > img.active');
     //tolgo classe e aumenta di uno 
     currentSlide.classList.remove('active');
+    currentIcon.classList.remove('active');
     activeSlide++
     if (activeSlide === sliderImages.length){
         activeSlide = 0;
@@ -89,5 +104,6 @@ nextBtn.addEventListener('click', function (){
     const allSlides = document.querySelectorAll('.slider > .slides');
     const nextSlide = allSlides[activeSlide];
     nextSlide.classList.add('active');
-    
-})
+    const allIcons = document.querySelectorAll('.icons > img');
+    allIcons[activeSlide].classList.add('active');  
+}

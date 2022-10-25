@@ -11,6 +11,9 @@ body{
     width: 700px;
     margin: 10rem auto;
 }
+.slider{
+    width: 90%;
+}
 .slides img{
     width: 100%;
     max-width: 700px;
@@ -39,3 +42,19 @@ body{
     color: lightgrey;
 }
 
+.icons{
+    width: 10%;
+}
+
+.icons img{
+    width: 100%;
+    max-width: 150px;
+    height: calc(100% / 5);
+    object-fit: cover;
+    filter: brightness(0.5);
+}
+
+.icons img.active{
+    filter: brightness(1);
+    border: 1px solid lightskyblue;
+}
